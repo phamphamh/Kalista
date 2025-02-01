@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+build/
+*.js.map
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+
+# Alephium specific
+.alephium/
+artifacts/
+
+# Temporary files
+tmp/
+temp/
+
+# MongoDB
+*.mongodb
+
+# Debug files
+debug/
+
+# Production files
+.production/
+
+# Large files and directories
+*.zip
+*.tar.gz
+*.rar
+uploads/
+downloads/
+
+# Java related (pour les scripts devnet-java)
+*.class
+*.jar
+target/
+
+# Alephium additional
+.devnet/
+node-data/
+devnet-data/
+
+# Misc
+*.bak
+*.backup
+*.old 

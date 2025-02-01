@@ -1,0 +1,75 @@
+// MemeToken Smart Contract
+// Development History:
+// - Initial implementation with basic ERC20-like functionality
+// - Added burn mechanism with configurable rate
+// - Implemented minting and transfer functions
+
+import "std/fungible_token_interface"
+
+Contract MemeToken(
+    name: ByteVec,
+    symbol: ByteVec,
+    decimals: U256,
+    burnRate: U256,
+    initialSupply: U256
+) implements IFungibleToken {
+    event Transfer(from: Address, to: Address, amount: U256)
+    event Burn(from: Address, amount: U256)
+
+    pub fn getName() -> ByteVec {
+        return name
+    }
+
+    pub fn getSymbol() -> ByteVec {
+        return symbol
+    }
+
+    pub fn getDecimals() -> U256 {
+        return decimals
+    }
+
+    pub fn getTotalSupply() -> U256 {
+        return initialSupply
+    }
+
+    pub fn getBurnRate() -> U256 {
+        return burnRate
+    }
+
+    pub fn balanceOf() -> U256 {
+        return initialSupply
+    }
+
+    @using(checkExternalCaller = false)
+    pub fn transfer(amount: U256) -> () {
+        assert!(amount > 0, 0)
+        let caller = callerAddress!()
+        let balance = balanceOf()
+        assert!(balance >= amount, 1)
+
+        // Calculate burn amount based on rate
+        let burnAmount = (amount * burnRate) / 10000
+        let transferAmount = amount - burnAmount
+
+        // Emit events for transfer and burn
+        emit Transfer(caller, caller, transferAmount)
+        emit Burn(caller, burnAmount)
+    }
+
+    @using(checkExternalCaller = false)
+    pub fn mint() -> () {
+        let caller = callerAddress!()
+        let contract = selfAddress!()
+        emit Transfer(contract, caller, initialSupply)
+    }
+
+    @using(checkExternalCaller = false)
+    pub fn burn() -> () {
+        let caller = callerAddress!()
+        let balance = balanceOf()
+        assert!(balance > 0, 0)
+
+        emit Burn(caller, balance)
+    }
+} 
+

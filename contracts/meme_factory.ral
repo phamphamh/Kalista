@@ -1,0 +1,61 @@
+// MemeFactory Smart Contract
+// Development History:
+// - Initial implementation of token factory
+// - Added sharding support with groupId
+// - Implemented token creation with validation
+
+Contract MemeFactory(
+    mut tokenCount: U256
+) {
+    event TokenCreated(
+        tokenId: ByteVec,
+        name: ByteVec,
+        symbol: ByteVec,
+        totalSupply: U256,
+        burnRate: U256,
+        creator: Address,
+        groupId: U256
+    )
+
+    pub fn getTokenCount() -> U256 {
+        return tokenCount
+    }
+
+    @using(updateFields = true, preapprovedAssets = true, checkExternalCaller = false)
+    pub fn createToken(
+        name: ByteVec,
+        symbol: ByteVec,
+        decimals: U256,
+        totalSupply: U256,
+        burnRate: U256,
+        groupId: U256
+    ) -> ByteVec {
+        // Validate input parameters
+        assert!(totalSupply > 0, 0)
+        assert!(burnRate <= 10000, 1)  // Max 100% burn rate
+        assert!(decimals <= 18, 2)     // Max 18 decimals
+        assert!(groupId < 4, 3)        // Max 4 groups (shards)
+
+        let caller = callerAddress!()
+        
+        // Generate unique token ID
+        let tokenId = blake2b!(toByteVec!(tokenCount))
+
+        // Increment token counter
+        tokenCount = tokenCount + 1
+
+        // Emit creation event
+        emit TokenCreated(
+            tokenId,
+            name,
+            symbol,
+            totalSupply,
+            burnRate,
+            caller,
+            groupId
+        )
+
+        return tokenId
+    }
+} 
+
