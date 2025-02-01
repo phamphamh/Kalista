@@ -106,7 +106,7 @@ Kalista.io aims to create an automated platform for meme token creation and mana
 
 4. Start Frontend:
    ```bash
-   cd front
+   cd frontend
    npm install
    npm run dev
    ```
