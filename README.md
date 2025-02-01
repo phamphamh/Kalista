@@ -22,7 +22,19 @@ Kalista.io aims to create an automated platform for meme token creation and mana
    - Integrated MongoDB (currently showing deprecation warnings for some options)
    - Server running successfully on port 3000
 
-### Technical Challenges Encountered
+### Frontend Development
+- **Next.js Setup**
+  - Created a new Next.js project in the `front` directory.
+  - Implemented a basic landing page to showcase the platform.
+  - Utilized React components for modular and reusable UI elements.
+  - Styled using CSS modules for scoped styling.
+
+- **Features**
+  - Responsive design for mobile and desktop views.
+  - Placeholder components for future integration with backend.
+  - Basic routing setup with Next.js pages.
+
+## Technical Challenges Encountered
 
 1. **Alephium Node Issues**
    - RocksDB lock file conflicts
@@ -77,20 +89,27 @@ Kalista.io aims to create an automated platform for meme token creation and mana
 ## Current Setup Instructions
 
 1. Install Java 11:
-```bash
-brew install openjdk@11
-```
+   ```bash
+   brew install openjdk@11
+   ```
 
 2. Configure Java 11:
-```bash
-export JAVA_HOME=`/usr/libexec/java_home -v 11`
-```
+   ```bash
+   export JAVA_HOME=`/usr/libexec/java_home -v 11`
+   ```
 
 3. Start Alephium Node:
-```bash
-cd kalista-v2
-java -jar alephium.jar
-```
+   ```bash
+   cd kalista-v2
+   java -jar alephium.jar
+   ```
+
+4. Start Frontend:
+   ```bash
+   cd front
+   npm install
+   npm run dev
+   ```
 
 ## Known Issues
 1. RocksDB lock file conflict when starting node
@@ -107,4 +126,4 @@ java -jar alephium.jar
 Project is currently in development phase. Contributions welcome after initial stable release.
 
 ## License
-TBD 
+TBD
