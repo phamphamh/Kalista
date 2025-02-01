@@ -38,14 +38,14 @@ Kalista.io aims to create an automated platform for meme token creation and mana
 ### Phase 1: Backend Structure (Partially Complete)
 - [x] Basic Express server setup
 - [x] MongoDB integration
-- [ ] Update MongoDB connection parameters
-- [ ] Complete Alephium SDK integration
+- [x] Update MongoDB connection parameters
+- [x] Complete Alephium SDK integration
 - [ ] Implement proper error handling
 
 ### Phase 2: Smart Contracts
-- [ ] Develop token creation contract
-- [ ] Implement burn mechanism
-- [ ] Add sharding logic
+- [x] Develop token creation contract
+- [x] Implement burn mechanism
+- [x] Add sharding logic
 - [ ] Deploy and test contracts
 
 ### Phase 3: Liquidity Pool
